@@ -1,0 +1,21 @@
+page-settings {
+    ion-header ion-icon.back-button-icon.icon {
+        color: $sandy-brown!important;
+    }
+    ion.list{
+        overflow-y: auto;
+    }
+    .toolbar-background-md{
+        font: 100% $font-stack;
+        background-color: $menu-color!important;
+        
+      }
+
+    .toolbar-title-md{
+        color: $sandy-brown!important;
+        display:flex;
+       // justify-content: center;
+      }
+
+
+}

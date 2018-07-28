@@ -1,0 +1,56 @@
+page-messages {
+   // ion-content {
+   //     font: 100% $font-stack;
+   //     background-color: $primary-color!important;
+   //   }
+    
+    ion-header ion-icon.back-button-icon.icon {
+        color: $sandy-brown!important;
+    }
+    ion.list{
+        overflow-y: auto;
+    }
+    .item-md:active{
+        background-color:rgb(239, 241, 243)!important;
+    }
+
+    button.done{
+        background-color: $done!important;
+        color: $menu-color!important;
+        border-color: $light-color;
+        font: 80% $font-stack!important;
+    }
+
+    button.sos{
+        background-color: $sandy-brown!important;
+        color: $menu-color!important;
+        border-color: $light-color;
+        font: 80% $font-stack!important;
+    }
+
+    button.close{
+        background-color: $cancel!important;
+        color: $menu-color!important;
+        border-color: $light-color;
+        font: 80% $font-stack!important;
+    }
+    span{
+        font: 70% $font-stack;
+        float: right;
+    }
+
+    .toolbar-background-md{
+        font: 100% $font-stack;
+        background-color: $menu-color!important;
+        
+      }
+
+    .toolbar-title-md{
+        color: $sandy-brown!important;
+        display:flex;
+    // justify-content: center;
+      }
+      .item{
+        cursor: pointer;
+      }
+}

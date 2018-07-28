@@ -7,6 +7,8 @@ import {LoginComponent} from "../pages/auth/login.component";
 import {LogoutComponent} from "../pages/auth/logout.component";
 //import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { StatusBar } from '@ionic-native/status-bar';
+import {HomePage} from "../pages/home/home";
+
 
 
 @Component({
@@ -15,7 +17,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 export class MyApp {
     @ViewChild(NavController) navCtrl;
     public loginPage = LoginComponent;
-    public homePage = ControlPanelComponent;
+    public homePage = HomePage;
+    //public homePage = ControlPanelComponent;
     public logoutPage = LogoutComponent;
     public settingsPage = ControlPanelComponent;
     public splash = new SplashScreen();
@@ -26,7 +29,7 @@ export class MyApp {
                 public menu: MenuController,
                 public events: Events,
                 public awsUtil: AwsUtil){
-               // statusBar: StatusBar, 
+               // statusBar: StatusBar,
                 //splashScreen: SplashScreen,
              //   public push: Push,
                 //public alertCtrl: AlertController) {
@@ -46,7 +49,7 @@ export class MyApp {
 
     }
 
-    
+
     openPage(page) {
         // Reset the nav controller to have just this page
         // we wouldn't want the back button to show in this scenario
@@ -71,7 +74,7 @@ export class MyApp {
         this.menu.enable(loggedIn, 'loggedInMenu');
         this.menu.enable(!loggedIn, 'loggedOutMenu');
     }
-    
- 
+
+
 
 }

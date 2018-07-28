@@ -1,0 +1,32 @@
+<!--
+  Generated template for the SettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<body>
+<ion-header>  
+      <ion-navbar>
+        <ion-title>Einstellungen</ion-title>
+      </ion-navbar>
+</ion-header>
+<ion-content>
+      <ion-item-group>
+        <ion-item *ngFor = "let opfer of list.victim" ng-class="{'selected':item.selected}" (click)="pushDetailsPage(opfer.id, opfer.name, opfer.state,opfer.reason)">
+          {{opfer.name}} <span> {{opfer.time}} </span>
+              <button *ngIf="opfer.state == 'inProgress'"  ion-button outline item-end icon-start class="sos">
+                  <ion-icon name="sync"></ion-icon>
+                 braucht Hilfe
+             </button>
+              <button *ngIf="opfer.state == 'done'" ion-button outline item-end icon-start class="done">
+                  <ion-icon name="done-all" ></ion-icon>
+                 erledigt
+                </button>
+              <button *ngIf="opfer.state == 'cancelled'" ion-button outline item-end icon-start class="close">
+                  <ion-icon name="close"></ion-icon>
+                  abgebrochen
+                </button>         
+        </ion-item>
+      </ion-item-group>
+    </ion-content>
+  </body>

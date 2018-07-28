@@ -17,6 +17,10 @@ import {UserRegistrationService} from "../providers/userRegistration.service";
 import {LogoutComponent} from "../pages/auth/logout.component";
 import {BrowserModule} from "@angular/platform-browser";
 import { Geolocation } from '@ionic-native/geolocation';
+import {HomePage} from "../pages/home/home";
+import {SettingsPage} from "../pages/settings/settings";
+import {MessagesPage} from "../pages/messages/messages";
+
 //import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
 
@@ -30,11 +34,15 @@ import { Geolocation } from '@ionic-native/geolocation';
         ResendCodeComponent,
         ForgotPasswordStep1Component,
         ForgotPasswordStep2Component,
-        ControlPanelComponent
+        ControlPanelComponent,
+        HomePage,
+      SettingsPage,
+      MessagesPage
+
     ],
     imports: [
         IonicModule.forRoot(MyApp),
-        BrowserModule
+        BrowserModule,
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -46,7 +54,10 @@ import { Geolocation } from '@ionic-native/geolocation';
         ResendCodeComponent,
         ForgotPasswordStep1Component,
         ForgotPasswordStep2Component,
-        ControlPanelComponent
+        ControlPanelComponent,
+        HomePage,
+      SettingsPage,
+      MessagesPage
     ],
     providers: [CognitoUtil,
         AwsUtil,
