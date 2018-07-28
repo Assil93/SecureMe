@@ -1,14 +1,4 @@
-## AWS Cognito with Ionic2 Quickstart
 
-### Updates
-10/14 -- Updated to Angular Final/Ionic RC0
-
-### What does this app do?
-Quickly start using AWS Cognito and Ionic3
-
-### Tech Stack
-#### Required Tools
-* [npm](https://www.npmjs.com/)
 
 #### Frameworks
 * [AWS JavaScript SDK](http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/browser-intro.html)
