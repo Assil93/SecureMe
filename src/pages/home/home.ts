@@ -1,7 +1,7 @@
 import { IonicPage, NavParams, NavController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { AlertController } from 'ionic-angular';
-import { LoginComponent } from '../auth/login.component';
+import { LoginPage } from '../login/login';
 
 @IonicPage({
     name: 'HomePage'
@@ -33,6 +33,6 @@ export class HomePage {
     this.navCtrl.push('MessagesPage');
  }
 
-
+   
 
 }

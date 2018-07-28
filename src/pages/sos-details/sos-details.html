@@ -1,0 +1,55 @@
+<!--
+  Generated template for the SosDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>SOS von {{name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+ <!--<div> id: {{id}}</div>
+  <div>name: {{name}}</div>-->
+  <ion-card>
+      <ion-item>
+          <i class="fas fa-map-pin"></i>
+          <h2>Deine Position</h2>
+          <p>11 N. Way St, Madison, WI 53703</p>
+        </ion-item>
+      
+        <ion-item>
+          <i class="fas fa-ambulance" *ngIf="reason=='health'"></i>
+          <i class="fas fa-fire-extinguisher" *ngIf="reason=='fire'"></i>
+          <i class="fas fa-taxi" *ngIf="reason=='police'"></i>
+          <h2>SOS</h2>
+          <p>14 S. Hop Avenue, Madison, WI 53703</p>
+        </ion-item>
+      
+        <ion-item>
+          <span item-start>18 min</span>
+          <span item-start>(2.6 km)</span>
+          <button ion-button icon-start clear item-end (click)="goToMapPage()">
+            <ion-icon name="navigate"></ion-icon>
+            Start
+          </button>
+        </ion-item>
+    <img src="../assets/imgs/ddX9U.png">
+  </ion-card>
+  <div class="row">
+      <div class="col notHelp">
+          <button ion-button *ngIf="help==true" float-center class="help" (click)="helpFalse()">NICHT MEHR HELFEN</button>
+          <button ion-button float-center *ngIf="help==false" class="help" disabled>NICHT MEHR HELFEN</button>
+      </div>
+      <div class="col help">
+          <button ion-button *ngIf="help==false" float-center class="help" (click)="helpTrue()">HELFEN</button>
+          <button ion-button float-center *ngIf="help==true" class="help" disabled>HELFEN</button>
+      </div>
+  </div>
+
+</ion-content>

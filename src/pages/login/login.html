@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-navbar>
+    <!--    <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>-->
+        <ion-title>
+          SecureMe
+        </ion-title>
+       
+    </ion-navbar>
+  </ion-header>
+  
+  
+  <ion-content padding>
+    <button ion-button (click)="goToHomePage()">Go to home Page</button>
+    <p> Das ist LoginPage, gestalte sie wie du es magst:) 
+    </p>
+  
+    <ion-list inset>
+
+      <ion-item>
+        <ion-label>Nutername</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label>Passwort</ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item>
+    
+    </ion-list>
+  </ion-content>

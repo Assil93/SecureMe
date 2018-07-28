@@ -1,0 +1,34 @@
+page-sos-details {
+    ion-header ion-icon.back-button-icon.icon {
+        color: $sandy-brown!important;
+    }
+
+    .toolbar-background-md{
+        font: 100% $font-stack;
+        background-color: $menu-color!important;
+        
+      }
+
+    .toolbar-title-md{
+        color: $sandy-brown!important;
+        display:flex;
+        justify-content: center;
+      }
+      .help{
+          float: left;
+      }
+      .notHelp{
+          float: right;
+      }
+     /* .text-center{
+       
+        margin-left: 38%;
+        margin-right: 38%;
+      }*/
+    button.help{
+        background-color: #4285f4!important;
+        color:$white!important;
+
+    }
+
+}
