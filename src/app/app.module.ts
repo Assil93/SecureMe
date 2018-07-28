@@ -35,9 +35,7 @@ import {MessagesPage} from "../pages/messages/messages";
         ForgotPasswordStep1Component,
         ForgotPasswordStep2Component,
         ControlPanelComponent,
-        HomePage,
-      SettingsPage,
-      MessagesPage
+        HomePage
 
     ],
     imports: [
@@ -55,9 +53,7 @@ import {MessagesPage} from "../pages/messages/messages";
         ForgotPasswordStep1Component,
         ForgotPasswordStep2Component,
         ControlPanelComponent,
-        HomePage,
-      SettingsPage,
-      MessagesPage
+        HomePage
     ],
     providers: [CognitoUtil,
         AwsUtil,
