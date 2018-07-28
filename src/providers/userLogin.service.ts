@@ -1,13 +1,17 @@
 import {Injectable} from "@angular/core";
 import {CognitoCallback, CognitoUtil, LoggedInCallback} from "./cognito.service";
 import {EventsService} from "./events.service";
+import {Http} from "@angular/http";
+import {Push, PushToken} from "@ionic/cloud-angular";
 declare let AWS: any;
 declare let AWSCognito: any;
 
 @Injectable()
 export class UserLoginService {
 
-    constructor(public cUtil: CognitoUtil, public eventService: EventsService) {
+    public saveTokenURL = 'http://18.188.33.56:8080/maps';
+
+    constructor(public cUtil: CognitoUtil, public eventService: EventsService, public push: Push, public http: Http) {
         console.log("eventservice1: " + eventService);
     }
 
@@ -34,6 +38,22 @@ export class UserLoginService {
             onSuccess: function (result) {
                 callback.cognitoCallback(null, result);
                 mythis.eventService.sendLoggedInEvent();
+
+                this.push.register().then((t: PushToken) => {
+                    return this.push.saveToken(t);
+                }).then((t: PushToken) => {
+
+                    let body = {username: username, token: t.token };
+                    let headers = new Headers({ 'Content-Type': 'application/json' });
+
+                    this.http.post(this.saveTokenURL, body, headers).toPromise().then(response => {
+                        return response.json();
+                    }).then(
+                        response => {
+                            console.log(response);
+                        }
+                    );
+                });
             },
             onFailure: function (err) {
                 callback.cognitoCallback(err.message, null);

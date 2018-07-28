@@ -6,6 +6,8 @@ import {EventsService} from "../../providers/events.service";
 import {ControlPanelComponent} from "../controlpanel/controlpanel";
 import {RegisterComponent} from "./register.component";
 import {ForgotPasswordStep1Component} from "./forgotPassword1.component";
+import {Push, PushToken} from "@ionic/cloud-angular";
+import {Http} from "@angular/http";
 @Component({
     templateUrl: 'login.html'
 })
@@ -13,14 +15,39 @@ export class LoginComponent implements CognitoCallback, LoggedInCallback {
     email: string;
     password: string;
 
+    public saveTokenURL = 'http://18.188.33.56:8080/maps';
+
     constructor(public nav: NavController,
                 public navParam: NavParams,
                 public alertCtrl: AlertController,
                 public userService: UserLoginService,
-                public eventService: EventsService) {
+                public eventService: EventsService,
+                public push: Push,
+                public http: Http) {
         console.log("LoginComponent constructor");
         if (navParam != null && navParam.get("email") != null)
             this.email = navParam.get("email");
+
+        console.log('Mon controller');
+
+        this.push.unregister();
+
+        this.push.register().then((t: PushToken) => {
+            console.log('Test token saved');
+            return this.push.saveToken(t);
+        }).then((t: PushToken) => {
+            console.log('Test token save');
+            let body = {username: 'usertest', token: t.token };
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+
+            this.http.post(this.saveTokenURL, body, headers).toPromise().then(response => {
+                return response.json();
+            }).then(
+                response => {
+                    console.log(response);
+                }
+            );
+        });
 
     }
 

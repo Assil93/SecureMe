@@ -20,9 +20,29 @@ import { Geolocation } from '@ionic-native/geolocation';
 import {HomePage} from "../pages/home/home";
 import {SettingsPage} from "../pages/settings/settings";
 import {MessagesPage} from "../pages/messages/messages";
+import {CloudSettings, CloudModule, Push} from "@ionic/cloud-angular";
+import {HttpModule} from "@angular/http";
+import {IonicStorageModule} from "@ionic/storage";
 
 //import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
+const cloudSettings: CloudSettings = {
+    'core': {
+        'app_id': 'bc721967'
+    },
+    'push': {
+        'sender_id': '679679110990',
+        'pluginConfig': {
+            'ios': {
+                'badge': true,
+                'sound': true
+            },
+            'android': {
+                'iconColor': '#343434'
+            }
+        }
+    }
+};
 
 @NgModule({
     declarations: [
@@ -43,6 +63,9 @@ import {MessagesPage} from "../pages/messages/messages";
     imports: [
         IonicModule.forRoot(MyApp),
         BrowserModule,
+        HttpModule,
+        IonicStorageModule.forRoot(),
+        CloudModule.forRoot(cloudSettings)
     ],
     bootstrap: [IonicApp],
     entryComponents: [

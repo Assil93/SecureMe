@@ -2,6 +2,8 @@ import { IonicPage, NavParams, NavController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 import { LoginComponent } from '../auth/login.component';
+import {Push, PushToken} from "@ionic/cloud-angular";
+import {Http} from "@angular/http";
 
 @IonicPage({
     name: 'HomePage'
@@ -14,6 +16,7 @@ import { LoginComponent } from '../auth/login.component';
 export class HomePage {
 
     constructor(public navParams: NavParams, public navCtrl: NavController, public alertCtrl: AlertController) {
+
     }
 
   showAlert() {
