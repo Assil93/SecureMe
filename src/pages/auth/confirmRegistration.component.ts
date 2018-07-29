@@ -3,7 +3,7 @@ import {UserRegistrationService} from "../../providers/userRegistration.service"
 import {AlertController, NavController, NavParams} from "ionic-angular";
 import {LoginComponent} from "../login/login.component";
 import {ResendCodeComponent} from "./resendCode.component";
-import {RegisterComponent} from "./register.component";
+import {RegisterComponent} from "../../components/register/register";
 @Component({
     templateUrl: 'confirmRegistration.html',
     providers: [UserRegistrationService]

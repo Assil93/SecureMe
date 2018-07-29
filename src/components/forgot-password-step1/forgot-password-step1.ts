@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import {CognitoCallback} from "../../providers/cognito.service";
 import {AlertController, NavController} from "ionic-angular";
-import {ForgotPasswordStep2Component} from "../../pages/auth/forgotPassword2.component";
+import {ForgotPasswordStep2Component} from "../forgot-password-step2/forgot-password-step2";
 import {UserLoginService} from "../../providers/userLogin.service";
-import {RegisterComponent} from  "../../pages/auth/register.component"
+import {RegisterComponent} from  "../register/register"
 import {LoginComponent} from  "../../pages/login/login.component";
 /**
  * Generated class for the ForgotPasswordStep1Component component.
