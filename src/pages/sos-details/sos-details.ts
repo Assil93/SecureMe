@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { ViewChild, ElementRef } from '@angular/core';
 
+
+declare var google;
 /**
  * Generated class for the SosDetailsPage page.
  *
@@ -21,7 +24,9 @@ export class SosDetailsPage {
  state:String;
  reason:String;
  help = false;
-
+ @ViewChild('map') mapElement: ElementRef;
+    map: any;
+    
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
     this.id = navParams.get('id');
     this.name = navParams.get('name');
@@ -62,6 +67,20 @@ goToMapPage() {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SosDetailsPage');
+    this.loadMap();
   }
-
+ 
+  loadMap(){
+ 
+    let latLng = new google.maps.LatLng(-34.9290, 138.6010);
+ 
+    let mapOptions = {
+      center: latLng,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+ 
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+ 
+  }
 }

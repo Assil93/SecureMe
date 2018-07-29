@@ -42,6 +42,7 @@ export class HomePage {
 
             this.userService.sendPushToUser(pushBody).subscribe(response => {
                 console.log('Push notification sent to: ' + email);
+                this.doAlert("SOS abgeschickt", "Dein Hilferuf ist abgeschickt!")
               },
               error => {
                 console.log('Push notification could\'n be sent to: ' + email + '. Error: ' + error);
@@ -53,6 +54,15 @@ export class HomePage {
         console.log('Error while getting users');
       });
   }
+  doAlert(title: string, message: string) {
+
+    let alert = this.alertCtrl.create({
+        title: title,
+        subTitle: message,
+        buttons: ['OK']
+    });
+    alert.present();
+}
 
   goToSettingsPage() {
     this.navCtrl.push('SettingsPage');

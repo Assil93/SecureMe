@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import {UserRegistrationService} from "../../providers/userRegistration.service";
 import {CognitoCallback, RegistrationUser} from "../../providers/cognito.service";
 import {AlertController, NavController} from "ionic-angular";
-import {ConfirmRegistrationComponent} from "../../pages/auth/confirmRegistration.component";
-import {ResendCodeComponent} from "../../pages/auth/resendCode.component";
+import {ConfirmRegistrationComponent} from "../../components/confirm-registration/confirm-registration";
+import {ResendCodeComponent} from "../../components/resend-code/resend-code";
 import {LoginComponent} from "../../pages/login/login.component";
 
 /**
