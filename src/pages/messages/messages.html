@@ -7,7 +7,7 @@
 <body>
 <ion-header>  
       <ion-navbar>
-        <ion-title>Einstellungen</ion-title>
+        <ion-title>Eingehende Hilferufs</ion-title>
       </ion-navbar>
 </ion-header>
 <ion-content>
@@ -16,15 +16,15 @@
           {{opfer.name}} <span> {{opfer.time}} </span>
               <button *ngIf="opfer.state == 'inProgress'"  ion-button outline item-end icon-start class="sos">
                   <ion-icon name="sync"></ion-icon>
-                 braucht Hilfe
+                 <!--braucht Hilfe-->
              </button>
               <button *ngIf="opfer.state == 'done'" ion-button outline item-end icon-start class="done">
                   <ion-icon name="done-all" ></ion-icon>
-                 erledigt
+                <!-- erledigt-->
                 </button>
               <button *ngIf="opfer.state == 'cancelled'" ion-button outline item-end icon-start class="close">
                   <ion-icon name="close"></ion-icon>
-                  abgebrochen
+                  <!--abgebrochen-->
                 </button>         
         </ion-item>
       </ion-item-group>

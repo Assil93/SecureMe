@@ -1,12 +1,11 @@
 page-settings {
-    page-home{
         .scroll-content{
           overflow-y: hidden!important;
         }
         ion-content {
           font: 100% $font-stack;
          /* background-color: $primary-color!important;*/
-         background-color: #f4f4f4e7;
+         background-color:  #f4f4f4e7!important;
         }
         .toolbar-background-md{
           font: 100% $font-stack;
@@ -68,9 +67,10 @@ page-settings {
         button.footer{
           background-color: $menu-color!important;
         }
-      
-      
-      }
+          
+    ion-header ion-icon.back-button-icon.icon {
+        color: $sandy-brown!important;
+    }
       
       
       

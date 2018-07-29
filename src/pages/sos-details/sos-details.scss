@@ -25,10 +25,15 @@ page-sos-details {
         margin-left: 38%;
         margin-right: 38%;
       }*/
-    button.help{
+    /*button.help{
         background-color: #4285f4!important;
         color:$white!important;
-
-    }
+    }*/
+    button{
+        border-color: $sandy-brown!important;
+        color: $sandy-brown!important;
+        background-color: $menu-color!important;
+        margin-top: 10px!important;
+      }
 
 }

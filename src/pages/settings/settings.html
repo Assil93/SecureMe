@@ -13,10 +13,11 @@
 
   <ion-content>
     <ion-list>
-      <ion-item (click)="openPage(page)">Ausloggen</ion-item>
-   <!--   <ion-item *ngFor="let settings of settings_list.settings">
+
+    <ion-item *ngFor="let settings of settings_list.settings">
           <ion-label>{{settings.name}}</ion-label> 
             <ion-toggle  *ngIf="settings.name == 'Benachrichtigungen'" checked="true"></ion-toggle>
-      </ion-item>-->
+      </ion-item>
+      <ion-item (click)="openPage(page)">Ausloggen</ion-item>
     </ion-list>
   </ion-content>

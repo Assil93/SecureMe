@@ -26,8 +26,7 @@ export class SettingsPage {
     "settings":[
       { "name": "Profile"}, 
       { "name": "Benachrichtigungen"},
-      {"name": "Ton"},
-      { "name": "Ausloggen"}
+      {"name": "Ton"}
   ]
  }
 

@@ -5,7 +5,7 @@ import {UserLoginService} from "../../providers/userLogin.service";
 import {EventsService} from "../../providers/events.service";
 import {ControlPanelComponent} from "../controlpanel/controlpanel";
 import {RegisterComponent} from "../auth/register.component";
-import {ForgotPasswordStep1Component} from "../auth/forgotPassword1.component";
+import {ForgotPasswordStep1Component} from "../../components/forgot-password-step1/forgot-password-step1";
 import {Push, PushObject, PushOptions} from '@ionic-native/push';
 import {Storage} from '@ionic/storage';
 import {HomePage} from "../home/home";

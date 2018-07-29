@@ -9,7 +9,7 @@ import {LoginComponent} from "../pages/login/login.component";
 import {RegisterComponent} from "../pages/auth/register.component";
 import {ConfirmRegistrationComponent} from "../pages/auth/confirmRegistration.component";
 import {ResendCodeComponent} from "../pages/auth/resendCode.component";
-import {ForgotPasswordStep1Component} from "../pages/auth/forgotPassword1.component";
+import {ForgotPasswordStep1Component} from "../components/forgot-password-step1/forgot-password-step1";
 import {ForgotPasswordStep2Component} from "../pages/auth/forgotPassword2.component";
 import {UserLoginService} from "../providers/userLogin.service";
 import {UserParametersService} from "../providers/userParameters.service";
