@@ -4,8 +4,8 @@ import {AlertController, NavController, NavParams} from "ionic-angular";
 import {UserLoginService} from "../../providers/userLogin.service";
 import {EventsService} from "../../providers/events.service";
 import {ControlPanelComponent} from "../controlpanel/controlpanel";
-import {RegisterComponent} from "./register.component";
-import {ForgotPasswordStep1Component} from "./forgotPassword1.component";
+import {RegisterComponent} from "../auth//register.component";
+import {ForgotPasswordStep1Component} from "../auth/forgotPassword1.component";
 @Component({
     templateUrl: 'login.html'
 })

@@ -4,7 +4,7 @@ import {CognitoCallback} from "../../providers/cognito.service";
 import {AlertController, NavController} from "ionic-angular";
 import {ConfirmRegistrationComponent} from "./confirmRegistration.component";
 import {RegisterComponent} from "./register.component";
-import {LoginComponent} from "./login.component";
+import {LoginComponent} from "../login/login.component";
 @Component({
     templateUrl: 'resendCode.html',
     providers: [UserRegistrationService]

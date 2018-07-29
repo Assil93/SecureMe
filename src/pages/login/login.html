@@ -1,32 +1,49 @@
 <ion-header>
-    <ion-navbar>
-    <!--    <button ion-button menuToggle>
+    <ion-navbar hideBackButton>
+        <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
-          </button>-->
+        </button>
         <ion-title>
-          SecureMe
+            Login
         </ion-title>
-       
     </ion-navbar>
-  </ion-header>
-  
-  
-  <ion-content padding>
-    <button ion-button (click)="goToHomePage()">Go to home Page</button>
-    <p> Das ist LoginPage, gestalte sie wie du es magst:) 
-    </p>
-  
-    <ion-list inset>
+</ion-header>
+<ion-content>
+    <ion-list>
 
-      <ion-item>
-        <ion-label>Nutername</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-    
-      <ion-item>
-        <ion-label>Passwort</ion-label>
-        <ion-input type="password"></ion-input>
-      </ion-item>
-    
+        <ion-item styles="border-top:0px!important">
+            <ion-label floating>Username</ion-label>
+            <ion-input [(ngModel)]="email" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input [(ngModel)]="password" type="password"></ion-input>
+        </ion-item>
+
+            <button ion-button block outline large (click)="signMeIn()">Sign in</button>
+
+            <ion-item class="noBorder" styles="margin-bottom:10px">
+              <ion-label class="text">
+                    <button class="link" (click)="navToForgotPassword()">Passwort vergessen</button>
+                  </ion-label>
+                  <ion-label class="text">
+                    Hast du noch kein Account?
+                    <button class="link" (click)="navToRegister()">Registrieren</button>
+                  </ion-label>
+            </ion-item>
+
     </ion-list>
-  </ion-content>
+
+  <!--  <ion-grid>
+        <ion-row>
+            <ion-col width-50>
+                <button ion-button clear small (click)="navToForgotPassword()">Forgot Password</button>
+            </ion-col>
+            <ion-col width-50>
+                <button ion-button clear small (click)="navToRegister()">Register</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>-->
+
+</ion-content>

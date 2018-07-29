@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SecureMe} from '../../app/app.component';
+import{LoginPage} from '../login/login'
 
 /**
  * Generated class for the SettingsPage page.
@@ -17,7 +19,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SettingsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,   public secureMe:SecureMe) {
   }
 
   settings_list = {
@@ -34,5 +36,12 @@ export class SettingsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingsPage');
   }
+
+  
+  openPage(page) {
+    // Reset the nav controller to have just this page
+    // we wouldn't want the back button to show in this scenario
+    this.secureMe.setRoot(LoginPage)
+}
 
 }

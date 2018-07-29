@@ -4,7 +4,7 @@ import {CognitoCallback, RegistrationUser} from "../../providers/cognito.service
 import {AlertController, NavController} from "ionic-angular";
 import {ConfirmRegistrationComponent} from "./confirmRegistration.component";
 import {ResendCodeComponent} from "./resendCode.component";
-import {LoginComponent} from "./login.component";
+import {LoginComponent} from "../login/login.component";
 
 /**
  * This component is responsible for displaying and controlling

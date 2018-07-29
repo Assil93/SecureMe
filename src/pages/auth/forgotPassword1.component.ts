@@ -4,7 +4,7 @@ import {AlertController, NavController} from "ionic-angular";
 import {ForgotPasswordStep2Component} from "./forgotPassword2.component";
 import {UserLoginService} from "../../providers/userLogin.service";
 import {RegisterComponent} from "./register.component";
-import {LoginComponent} from "./login.component";
+import {LoginComponent} from "../login/login.component";
 
 @Component({
     templateUrl: 'forgotPassword.html'

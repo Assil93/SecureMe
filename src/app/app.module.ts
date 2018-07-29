@@ -1,11 +1,11 @@
 import {NgModule} from "@angular/core";
 import {IonicApp, IonicModule} from "ionic-angular";
-import {MyApp} from "./app.component";
+import {SecureMe} from "./app.component";
 import {CognitoUtil} from "../providers/cognito.service";
 import {AwsUtil} from "../providers/aws.service";
 import {ControlPanelComponent} from "../pages/controlpanel/controlpanel";
 import {EventsService} from "../providers/events.service";
-import {LoginComponent} from "../pages/auth/login.component";
+import {LoginComponent} from "../pages/login/login.component";
 import {RegisterComponent} from "../pages/auth/register.component";
 import {ConfirmRegistrationComponent} from "../pages/auth/confirmRegistration.component";
 import {ResendCodeComponent} from "../pages/auth/resendCode.component";
@@ -16,6 +16,7 @@ import {UserParametersService} from "../providers/userParameters.service";
 import {UserRegistrationService} from "../providers/userRegistration.service";
 import {LogoutComponent} from "../pages/auth/logout.component";
 import {BrowserModule} from "@angular/platform-browser";
+import { LoginPage } from '../pages/login/login';
 import { Geolocation } from '@ionic-native/geolocation';
 import {HomePage} from "../pages/home/home";
 import {SettingsPage} from "../pages/settings/settings";
@@ -26,7 +27,7 @@ import {MessagesPage} from "../pages/messages/messages";
 
 @NgModule({
     declarations: [
-        MyApp,
+        SecureMe,
         LoginComponent,
         LogoutComponent,
         RegisterComponent,
@@ -34,17 +35,16 @@ import {MessagesPage} from "../pages/messages/messages";
         ResendCodeComponent,
         ForgotPasswordStep1Component,
         ForgotPasswordStep2Component,
-        ControlPanelComponent,
-        HomePage
+        ControlPanelComponent
 
     ],
     imports: [
-        IonicModule.forRoot(MyApp),
+        IonicModule.forRoot(SecureMe),
         BrowserModule,
     ],
     bootstrap: [IonicApp],
     entryComponents: [
-        MyApp,
+        SecureMe,
         LoginComponent,
         LogoutComponent,
         RegisterComponent,
@@ -52,9 +52,7 @@ import {MessagesPage} from "../pages/messages/messages";
         ResendCodeComponent,
         ForgotPasswordStep1Component,
         ForgotPasswordStep2Component,
-        ControlPanelComponent,
-        HomePage
-    ],
+        ControlPanelComponent   ],
     providers: [CognitoUtil,
         AwsUtil,
         UserLoginService,

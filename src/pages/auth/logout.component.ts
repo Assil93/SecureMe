@@ -2,7 +2,7 @@ import {Component} from "@angular/core";
 import {LoggedInCallback} from "../../providers/cognito.service";
 import {UserLoginService} from "../../providers/userLogin.service";
 import {NavController} from "ionic-angular";
-import {LoginComponent} from "./login.component";
+import {LoginComponent} from "../login/login.component";
 @Component({
     template: ''
 })

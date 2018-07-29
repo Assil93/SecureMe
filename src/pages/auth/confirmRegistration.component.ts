@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {UserRegistrationService} from "../../providers/userRegistration.service";
 import {AlertController, NavController, NavParams} from "ionic-angular";
-import {LoginComponent} from "./login.component";
+import {LoginComponent} from "../login/login.component";
 import {ResendCodeComponent} from "./resendCode.component";
 import {RegisterComponent} from "./register.component";
 @Component({
