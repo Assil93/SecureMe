@@ -6,72 +6,80 @@ import {EventsService} from "../../providers/events.service";
 import {ControlPanelComponent} from "../controlpanel/controlpanel";
 import {RegisterComponent} from "./register.component";
 import {ForgotPasswordStep1Component} from "./forgotPassword1.component";
+import {Push, PushObject, PushOptions} from '@ionic-native/push';
+import {Storage} from '@ionic/storage';
+import {HomePage} from "../home/home";
+
 @Component({
-    templateUrl: 'login.html'
+  templateUrl: 'login.html'
 })
 export class LoginComponent implements CognitoCallback, LoggedInCallback {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 
-    constructor(public nav: NavController,
-                public navParam: NavParams,
-                public alertCtrl: AlertController,
-                public userService: UserLoginService,
-                public eventService: EventsService) {
-        console.log("LoginComponent constructor");
-        if (navParam != null && navParam.get("email") != null)
-            this.email = navParam.get("email");
+  constructor(public nav: NavController,
+              public navParam: NavParams,
+              public alertCtrl: AlertController,
+              public userService: UserLoginService,
+              public eventService: EventsService,
+              public storage: Storage) {
+    console.log("LoginComponent constructor");
+    if (navParam != null && navParam.get("email") != null)
+      this.email = navParam.get("email");
 
+  }
+
+  ionViewLoaded() {
+    console.log("Checking if the user is already authenticated. If so, then redirect to the secure site");
+    this.userService.isAuthenticated(this);
+  }
+
+  signMeIn() {
+    console.log("in onLogin");
+    if (this.email == null || this.password == null) {
+      this.doAlert("Error", "All fields are required");
+      return;
     }
 
-    ionViewLoaded() {
-        console.log("Checking if the user is already authenticated. If so, then redirect to the secure site");
-        this.userService.isAuthenticated(this);
-    }
+    this.storage.set('email', this.email);
 
-    signMeIn() {
-        console.log("in onLogin");
-        if (this.email == null || this.password == null) {
-            this.doAlert("Error", "All fields are required");
-            return;
-        }
-        this.userService.authenticate(this.email, this.password, this);
-    }
+    this.userService.authenticate(this.email, this.password, this);
+  }
 
-    cognitoCallback(message: string, result: any) {
-        if (message != null) { //error
-            this.doAlert("Error", message);
-            console.log("result: " + message);
-        } else { //success
-            console.log("Redirect to ControlPanelComponent");
-            this.nav.setRoot(ControlPanelComponent);
-        }
+  cognitoCallback(message: string, result: any) {
+    if (message != null) { //error
+      this.doAlert("Error", message);
+      console.log("result: " + message);
+    } else { //success
+      console.log("Redirect to ControlPanelComponent");
+      this.nav.setRoot(HomePage);
     }
+  }
 
-    isLoggedInCallback(message: string, isLoggedIn: boolean) {
-        console.log("The user is logged in: " + isLoggedIn);
-        if (isLoggedIn) {
-            this.eventService.sendLoggedInEvent();
-            this.nav.setRoot(ControlPanelComponent);
-        }
+  isLoggedInCallback(message: string, isLoggedIn: boolean) {
+    console.log("The user is logged in: " + isLoggedIn);
+    if (isLoggedIn) {
+      this.eventService.sendLoggedInEvent();
+      this.nav.setRoot(HomePage);
     }
+  }
 
-    navToRegister() {
-        this.nav.push(RegisterComponent);
-    }
+  navToRegister() {
+    this.nav.push(RegisterComponent);
+  }
 
-    navToForgotPassword() {
-        this.nav.push(ForgotPasswordStep1Component);
-    }
+  navToForgotPassword() {
+    this.nav.push(ForgotPasswordStep1Component);
+  }
 
-    doAlert(title: string, message: string) {
+  doAlert(title: string, message: string) {
 
-        let alert = this.alertCtrl.create({
-            title: title,
-            subTitle: message,
-            buttons: ['OK']
-        });
-        alert.present();
-    }
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: message,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 
 }

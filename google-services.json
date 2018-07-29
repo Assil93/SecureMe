@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "181858888867",
+    "firebase_url": "https://maps-1531821627867.firebaseio.com",
+    "project_id": "maps-1531821627867",
+    "storage_bucket": "maps-1531821627867.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181858888867:android:5fbac9d695012103",
+        "android_client_info": {
+          "package_name": "com.ionic.findme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "181858888867-liv7cqfn0q1fad0h15rbe1mat8mj2699.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBGJGNa3B_OZdK70LZ3N0-zEv1th_B9RY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
