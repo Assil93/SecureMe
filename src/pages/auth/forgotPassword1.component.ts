@@ -11,6 +11,8 @@ import {LoginComponent} from "../login/login.component";
 })
 export class ForgotPasswordStep1Component implements CognitoCallback {
     email: string;
+    emailerror: boolean;
+    isenabled:boolean=false;
 
     constructor(public nav: NavController, public alertCtrl: AlertController, public userService: UserLoginService) {
     }
@@ -22,6 +24,10 @@ export class ForgotPasswordStep1Component implements CognitoCallback {
     cognitoCallback(message: string, result: any) {
         if (message == null && result == null) { //error
             this.nav.push(ForgotPasswordStep2Component, {'email': this.email})
+            this.emailerror =false;
+        }
+        else {this.emailerror =true;
+       // this.doAlert("2","d")}
         }
     }
 
@@ -40,5 +46,11 @@ export class ForgotPasswordStep1Component implements CognitoCallback {
             buttons: ['OK']
         });
         alert.present();
+    }
+    disableButton(){
+        if (this.email==null|| this.email.trim().length == 0 ){
+            return true
+        }
+
     }
 }

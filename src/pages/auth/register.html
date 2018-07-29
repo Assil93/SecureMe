@@ -13,12 +13,21 @@
     <ion-list>
 
         <ion-item>
-            <ion-label floating>Username</ion-label>
+            <ion-label floating>Vorname</ion-label>
+            <ion-input></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Nachname</ion-label>
+            <ion-input></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Email</ion-label>
             <ion-input [(ngModel)]="registrationUser.email" type="email"></ion-input>
         </ion-item>
 
         <ion-item>
-            <ion-label floating>Password</ion-label>
+            <ion-label floating>Passwort</ion-label>
             <ion-input [(ngModel)]="registrationUser.password" type="password"></ion-input>
         </ion-item>
 
@@ -28,7 +37,7 @@
 
     </ion-list>
 
-    <ion-grid>
+   <!-- <ion-grid>
         <ion-row>
             <ion-col width-50>
                 <button ion-button clear small (click)="navToResendCode()">Resend Code</button>
@@ -37,6 +46,6 @@
                 <button ion-button clear small (click)="navToLogin()">Login</button>
             </ion-col>
         </ion-row>
-    </ion-grid>
+    </ion-grid>-->
 
 </ion-content>

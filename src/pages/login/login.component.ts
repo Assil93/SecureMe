@@ -12,6 +12,7 @@ import {ForgotPasswordStep1Component} from "../auth/forgotPassword1.component";
 export class LoginComponent implements CognitoCallback, LoggedInCallback {
     email: string;
     password: string;
+    error:boolean;
 
     constructor(public nav: NavController,
                 public navParam: NavParams,
@@ -32,7 +33,7 @@ export class LoginComponent implements CognitoCallback, LoggedInCallback {
     signMeIn() {
         console.log("in onLogin");
         if (this.email == null || this.password == null) {
-            this.doAlert("Error", "All fields are required");
+            //this.doAlert("Error", "All fields are required");
             return;
         }
         this.userService.authenticate(this.email, this.password, this);

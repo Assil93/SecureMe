@@ -34,6 +34,7 @@ import {ForgotPasswordStep1Component} from "../auth/forgotPassword1.component";
 export class LoginPage {
   email: string;
   password: string;
+  error: boolean;
 
 
   constructor(public nav: NavController,
@@ -55,7 +56,7 @@ export class LoginPage {
   signMeIn() {
       console.log("in onLogin");
       if (this.email == null || this.password == null) {
-          this.doAlert("Error", "All fields are required");
+       //   this.doAlert("Error", "All fields are required");
           return;
       }
       this.userService.authenticate(this.email, this.password, this);
@@ -63,9 +64,11 @@ export class LoginPage {
 
   cognitoCallback(message: string, result: any) {
       if (message != null) { //error
-          this.doAlert("Error", message);
+          //this.doAlert("Error", message);
+          this.error =true;
           console.log("result: " + message);
       } else { //success
+        this.error =false;
           console.log("Redirect to HomePage");
           this.nav.push('HomePage');
           //this.nav.setRoot(ControlPanelComponent);

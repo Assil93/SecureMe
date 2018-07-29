@@ -12,13 +12,13 @@
     <ion-list>
 
         <ion-item styles="border-top:0px!important">
-            <ion-label floating>Username</ion-label>
-            <ion-input [(ngModel)]="email" type="text"></ion-input>
+            <ion-label floating>Email</ion-label>
+            <ion-input class="no-color" [(ngModel)]="email" type="text" required></ion-input>
         </ion-item>
 
         <ion-item>
-            <ion-label floating>Password</ion-label>
-            <ion-input [(ngModel)]="password" type="password"></ion-input>
+            <ion-label floating>Passwort</ion-label>
+            <ion-input [(ngModel)]="password" type="password" required></ion-input>
         </ion-item>
 
             <button ion-button block outline large (click)="signMeIn()">Sign in</button>

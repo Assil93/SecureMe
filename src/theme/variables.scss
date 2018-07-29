@@ -42,6 +42,10 @@ $colors: (
 );
 
 $border:  #32db64;
+// Ionic variables override
+$text-input-ios-show-focus-highlight: false;
+$text-input-md-show-focus-highlight: false;
+$text-input-wp-show-focus-highlight: false;
 
 $font-stack:    Helvetica, sans-serif;
 $primary-color: #2A97CC;

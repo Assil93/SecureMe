@@ -72,4 +72,13 @@ page-login {
         padding-left: 2em;
         color: $sandy-brown!important;
       }
+      ion-input.no-color.ng-valid{
+        border-bottom-color: transparent!important;
+    }
+    ion-input.ng-invalid{
+        border-bottom-color: transparent!important;
+    }
+    ion-input.input-has-focus{
+        border-bottom-color: transparent!important;
+    }
 }
