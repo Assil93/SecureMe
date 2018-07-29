@@ -21,6 +21,9 @@ import { Geolocation } from '@ionic-native/geolocation';
 import {HomePage} from "../pages/home/home";
 import {SettingsPage} from "../pages/settings/settings";
 import {MessagesPage} from "../pages/messages/messages";
+import {Push} from "@ionic-native/push";
+import {Http, HttpModule} from "@angular/http";
+import { IonicStorageModule } from '@ionic/storage';
 
 //import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
@@ -40,7 +43,9 @@ import {MessagesPage} from "../pages/messages/messages";
     ],
     imports: [
         IonicModule.forRoot(SecureMe),
-        BrowserModule,
+        IonicStorageModule.forRoot(),
+    BrowserModule,
+    HttpModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -59,7 +64,8 @@ import {MessagesPage} from "../pages/messages/messages";
         UserParametersService,
         UserRegistrationService,
         EventsService,
-        Geolocation]
+        Geolocation,
+        Push]    
 })
 
 export class AppModule {

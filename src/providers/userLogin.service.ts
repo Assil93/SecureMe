@@ -1,111 +1,143 @@
 import {Injectable} from "@angular/core";
 import {CognitoCallback, CognitoUtil, LoggedInCallback} from "./cognito.service";
 import {EventsService} from "./events.service";
+import {Headers, Http, RequestOptions} from "@angular/http";
+import {PushBody} from "../models/pushBody";
+
 declare let AWS: any;
 declare let AWSCognito: any;
 
 @Injectable()
 export class UserLoginService {
 
-    constructor(public cUtil: CognitoUtil, public eventService: EventsService) {
-        console.log("eventservice1: " + eventService);
-    }
+  public mapUrl = 'http://18.188.33.56:8080/maps';
+  public sendPushNotUrl = 'https://fcm.googleapis.com/fcm/send';
 
-    authenticate(username: string, password: string, callback: CognitoCallback) {
-        let mythis = this;
+  constructor(public cUtil: CognitoUtil,
+              public eventService: EventsService,
+              public http: Http) {
+    console.log("eventservice1: " + eventService);
+  }
 
-        // Need to provide placeholder keys unless unauthorised user access is enabled for user pool
-        AWSCognito.config.update({accessKeyId: 'anything', secretAccessKey: 'anything'})
+  authenticate(username: string, password: string, callback: CognitoCallback) {
+    let mythis = this;
 
-        let authenticationData = {
-            Username: username,
-            Password: password,
-        };
-        let authenticationDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(authenticationData);
+    // Need to provide placeholder keys unless unauthorised user access is enabled for user pool
+    AWSCognito.config.update({accessKeyId: 'anything', secretAccessKey: 'anything'})
 
-        let userData = {
-            Username: username,
-            Pool: this.cUtil.getUserPool()
-        };
+    let authenticationData = {
+      Username: username,
+      Password: password,
+    };
+    let authenticationDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(authenticationData);
 
-        console.log("Authenticating the user");
-        let cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
-        cognitoUser.authenticateUser(authenticationDetails, {
-            onSuccess: function (result) {
-                callback.cognitoCallback(null, result);
-                mythis.eventService.sendLoggedInEvent();
-            },
-            onFailure: function (err) {
-                callback.cognitoCallback(err.message, null);
-            },
-        });
-    }
+    let userData = {
+      Username: username,
+      Pool: this.cUtil.getUserPool()
+    };
 
-    forgotPassword(username: string, callback: CognitoCallback) {
-        let userData = {
-            Username: username,
-            Pool: this.cUtil.getUserPool()
-        };
+    console.log("Authenticating the user");
+    let cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
+    cognitoUser.authenticateUser(authenticationDetails, {
+      onSuccess: function (result) {
+        callback.cognitoCallback(null, result);
+        mythis.eventService.sendLoggedInEvent();
+      },
+      onFailure: function (err) {
+        callback.cognitoCallback(err.message, null);
+      },
+    });
+  }
 
-        let cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
+  forgotPassword(username: string, callback: CognitoCallback) {
+    let userData = {
+      Username: username,
+      Pool: this.cUtil.getUserPool()
+    };
 
-        cognitoUser.forgotPassword({
-            onSuccess: function (result) {
+    let cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
 
-            },
-            onFailure: function (err) {
-                callback.cognitoCallback(err.message, null);
-            },
-            inputVerificationCode() {
-                callback.cognitoCallback(null, null);
-            }
-        });
-    }
+    cognitoUser.forgotPassword({
+      onSuccess: function (result) {
 
-    confirmNewPassword(email: string, verificationCode: string, password: string, callback: CognitoCallback) {
-        let userData = {
-            Username: email,
-            Pool: this.cUtil.getUserPool()
-        };
+      },
+      onFailure: function (err) {
+        callback.cognitoCallback(err.message, null);
+      },
+      inputVerificationCode() {
+        callback.cognitoCallback(null, null);
+      }
+    });
+  }
 
-        let cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
+  confirmNewPassword(email: string, verificationCode: string, password: string, callback: CognitoCallback) {
+    let userData = {
+      Username: email,
+      Pool: this.cUtil.getUserPool()
+    };
 
-        cognitoUser.confirmPassword(verificationCode, password, {
-            onSuccess: function (result) {
-                callback.cognitoCallback(null, result);
-            },
-            onFailure: function (err) {
-                callback.cognitoCallback(err.message, null);
-            }
-        });
-    }
+    let cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
 
-    logout() {
-        console.log("Logging out");
-        this.cUtil.getCurrentUser().signOut();
-        this.eventService.sendLogoutEvent();
-    }
+    cognitoUser.confirmPassword(verificationCode, password, {
+      onSuccess: function (result) {
+        callback.cognitoCallback(null, result);
+      },
+      onFailure: function (err) {
+        callback.cognitoCallback(err.message, null);
+      }
+    });
+  }
 
-    isAuthenticated(callback: LoggedInCallback) {
-        if (callback == null)
-            throw("Callback in isAuthenticated() cannot be null");
+  logout() {
+    console.log("Logging out");
+    this.cUtil.getCurrentUser().signOut();
+    this.eventService.sendLogoutEvent();
+  }
 
-        console.log("Getting the current user");
-        let cognitoUser = this.cUtil.getCurrentUser();
+  isAuthenticated(callback: LoggedInCallback) {
+    if (callback == null)
+      throw("Callback in isAuthenticated() cannot be null");
 
-        if (cognitoUser != null) {
-            cognitoUser.getSession(function (err, session) {
-                if (err) {
-                    console.log("Couldn't get the session: " + err, err.stack);
-                    callback.isLoggedInCallback(err, false);
-                }
-                else {
-                    console.log("Session is valid: " + session.isValid());
-                    callback.isLoggedInCallback(err, session.isValid());
-                }
-            });
-        } else {
-            callback.isLoggedInCallback("Can't retrieve the CurrentUser", false);
+    console.log("Getting the current user");
+    let cognitoUser = this.cUtil.getCurrentUser();
+
+    if (cognitoUser != null) {
+      cognitoUser.getSession(function (err, session) {
+        if (err) {
+          console.log("Couldn't get the session: " + err, err.stack);
+          callback.isLoggedInCallback(err, false);
         }
+        else {
+          console.log("Session is valid: " + session.isValid());
+          callback.isLoggedInCallback(err, session.isValid());
+        }
+      });
+    } else {
+      callback.isLoggedInCallback("Can't retrieve the CurrentUser", false);
     }
+  }
+
+  saveToken(username: string, token: string) {
+
+    let body = {username: username, token: token};
+
+    return this.http.post(this.mapUrl, body);
+  }
+
+  deleteToken(username: string) {
+    return this.http.delete(this.mapUrl + '/' + username);
+  }
+
+  getUsers() {
+    return this.http.get(this.mapUrl);
+  }
+
+  sendPushToUser(body: PushBody) {
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': 'key=AIzaSyBk8PvUXWsh0r03HzL0Lu7ilppeMPio6NA'
+    });
+    let options = new RequestOptions({headers: headers});
+    return this.http.post(this.sendPushNotUrl, body, options);
+  }
 }
