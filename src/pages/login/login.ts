@@ -37,6 +37,9 @@ export class LoginPage {
   email: string;
   password: string;
   error: boolean;
+  errorMessage:string;
+  emptyEmail:boolean;
+  emptyPasswort:boolean;
 
 
   constructor(public nav: NavController,
@@ -58,8 +61,16 @@ export class LoginPage {
   }
 
   signMeIn() {
+      this.emptyEmail = false;
+      this.emptyPasswort = false;
       console.log("in onLogin");
-      if (this.email == null || this.password == null) {
+      if(this.email == null|| this.email.trim().length == 0){
+          this.emptyEmail=true;
+          console.log(this.email)
+      }
+      if (this.password == null || this.password.trim().length == 0) {
+          this.emptyPasswort = true;
+          console.log(this.emptyEmail)
        //   this.doAlert("Error", "All fields are required");
           return;
       }
@@ -67,12 +78,21 @@ export class LoginPage {
   }
 
   cognitoCallback(message: string, result: any) {
+      this.errorMessage = "";
       if (message != null) { //error
-          this.doAlert("Error", message);
+        //  this.doAlert("Error", message);
           this.error =true;
+          console.log(this.error)
+          if(message="User does not exist"){
+              this.errorMessage = "Die Kombination von Email und Passwort konnte nicht gefunden werden."
+          }
+          else{
+            this.errorMessage = message;
+          } 
           console.log("result: " + message);
       } else { //success
         this.error =false;
+        this.errorMessage = "";
           console.log("Redirect to HomePage");
           this.nav.push('HomePage');
           //this.nav.setRoot(ControlPanelComponent);

@@ -15,12 +15,15 @@
             <ion-label floating>Email</ion-label>
             <ion-input class="no-color" [(ngModel)]="email" type="text" required></ion-input>
         </ion-item>
+        <div class="error" *ngIf="emptyEmail">Tippen Sie Ihren Email ein.</div>
 
         <ion-item>
             <ion-label floating>Passwort</ion-label>
             <ion-input [(ngModel)]="password" type="password" required></ion-input>
         </ion-item>
+        <div  class="error" *ngIf="emptyPasswort">Tippen Sie Ihren Passwort ein.</div>
 
+        <div  class="error" *ngIf="error">{{errorMessage}}</div>
             <button ion-button block outline large (click)="signMeIn()">Sign in</button>
 
             <ion-item class="noBorder" styles="margin-bottom:10px">

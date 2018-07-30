@@ -13,23 +13,38 @@
     <ion-list>
 
         <ion-item>
-            <ion-label floating required>Vorname</ion-label>
-            <ion-input></ion-input>
+            <ion-label floating>Vorname*</ion-label>
+            <ion-input  [(ngModel)]="registrationUser.vorname"></ion-input>
         </ion-item>
+        <div class="error" *ngIf="vornameError">Geben Sie Ihren Vorname ein.</div>
         <ion-item>
-            <ion-label floating required>Nachname</ion-label>
+            <ion-label floating>Nachname*</ion-label>
+            <ion-input  [(ngModel)]="registrationUser.nachname"></ion-input>
+        </ion-item>
+        <div class="error" *ngIf="nachnameError">Geben Sie Ihren Nachnamen ein.</div>
+        <ion-item>
+            <ion-label floating>Stadt</ion-label>
             <ion-input></ion-input>
         </ion-item>
 
         <ion-item>
-            <ion-label floating>Email</ion-label>
-            <ion-input [(ngModel)]="registrationUser.email" type="email"></ion-input>
+            <ion-label floating required>Email*</ion-label>
+            <ion-input [(ngModel)]="registrationUser.email"></ion-input>
         </ion-item>
+        <div class="error" *ngIf="emailError">Geben Sie Ihren Email ein.</div>
+        <div class="error" *ngIf="emailInvalid">Der eingegebene Email ist ungültig</div>
 
         <ion-item>
-            <ion-label floating>Passwort</ion-label>
+            <ion-label floating required>Passwort*</ion-label>
             <ion-input [(ngModel)]="registrationUser.password" type="password"></ion-input>
         </ion-item>
+        <div class="text" style="margin-bottom:10px">Mindenstens 8 Zeichen.</div>
+        <div class="error" *ngIf="passwordNull">Geben Sie einen Passwort ein.</div>
+        <div class="error" *ngIf="passwordTooShort">Das Passwort muss mindenstens 8 Zeichen enthalten.</div>
+
+        <div class="text" style="margin-top:10px!important">Mit * markierte Felder sind obligatorisch.</div>
+
+        <div  class="error" *ngIf="messageTrue">{{errorMessage}}</div>
 
         <ion-item>
             <button ion-button block outline large (click)="onRegister()">Sign up</button>

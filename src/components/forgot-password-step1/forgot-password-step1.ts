@@ -30,9 +30,11 @@ export class ForgotPasswordStep1Component implements CognitoCallback {
   cognitoCallback(message: string, result: any) {
       if (message == null && result == null) { //error
           this.nav.push(ForgotPasswordStep2Component, {'email': this.email})
-          this.emailerror =false;
+          this.emailerror = false;          
       }
-      else {this.emailerror =true;
+      else {
+        this.emailerror =true;
+          console.log(this.emailerror)
      // this.doAlert("2","d")}
       }
   }

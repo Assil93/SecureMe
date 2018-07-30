@@ -51,7 +51,7 @@ export class SosDetailsPage {
     buttons: ['OK']
   });
   const alert_false = this.alertCtrl.create({
-    subTitle: 'Schade, dass du '+ this.name + 'nicht helfen kannst',
+    subTitle: 'Schade, dass du '+ this.name + ' nicht helfen kannst',
     buttons: ['OK']
   });
   if (help==true){

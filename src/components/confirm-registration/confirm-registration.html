@@ -4,7 +4,7 @@
             <ion-icon name="menu"></ion-icon>
         </button>
         <ion-title>
-            User Confirmation
+            Benutzerbestätigung
         </ion-title>
     </ion-navbar>
 </ion-header>
@@ -12,17 +12,21 @@
 <ion-content>
     <ion-list>
         <ion-item>
-            <ion-label floating>Confirmation Code</ion-label>
+            <ion-label floating>Code bestätigen</ion-label>
             <ion-input [(ngModel)]="confirmationCode" type="text"></ion-input>
         </ion-item>
 
         <ion-item>
-            <button ion-button block large outline (click)="onConfirmRegistration()">Confirm</button>
+            <button ion-button block large outline (click)="onConfirmRegistration()">Bestätigen</button>
         </ion-item>
 
     </ion-list>
+    <ion-label class="text">
+        Hast du keinen Code bekommen?<br>
+        <button class="link" (click)="navToResendCode()">Den Code erneut zusenden</button>
+      </ion-label>
 
-    <ion-grid>
+    <!--<ion-grid>
         <ion-row>
             <ion-col width-30>
                 <button ion-button clear small (click)="navToResendCode()">Resend Code</button>
@@ -34,6 +38,6 @@
                 <button ion-button clear small (click)="navToLogin()">Login</button>
             </ion-col>
         </ion-row>
-    </ion-grid>
+    </ion-grid>-->
 
 </ion-content>

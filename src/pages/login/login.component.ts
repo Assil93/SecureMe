@@ -13,6 +13,7 @@ export class LoginComponent implements CognitoCallback, LoggedInCallback {
     email: string;
     password: string;
     error:boolean;
+    empty:boolean;
 
     constructor(public nav: NavController,
                 public navParam: NavParams,
@@ -31,8 +32,11 @@ export class LoginComponent implements CognitoCallback, LoggedInCallback {
     }
 
     signMeIn() {
-        console.log("in onLogin");
-        if (this.email == null || this.password == null) {
+        console.log("inn");
+        console.log(this.email)
+
+        if (this.email == undefined || this.password == undefined) {
+            this.empty = true;
             //this.doAlert("Error", "All fields are required");
             return;
         }

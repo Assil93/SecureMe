@@ -53,6 +53,10 @@ export class ResendCodeComponent implements CognitoCallback {
       });
       alert.present();
   }
-
+  disableButton(){
+    if (this.email==null|| this.email.trim().length == 0 ){
+        return true
+    }
+  }
 }
 
