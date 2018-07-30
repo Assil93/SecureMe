@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { ViewChild, ElementRef } from '@angular/core';
+import { Geolocation } from '@ionic-native/geolocation';
 
 
 declare var google;
@@ -26,8 +27,8 @@ export class SosDetailsPage {
  help = false;
  @ViewChild('map') mapElement: ElementRef;
     map: any;
-    
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,  public geolocation: Geolocation) {
     this.id = navParams.get('id');
     this.name = navParams.get('name');
     this.state = navParams.get('state');
@@ -72,15 +73,20 @@ goToMapPage() {
  
   loadMap(){
  
-    let latLng = new google.maps.LatLng(-34.9290, 138.6010);
+    this.geolocation.getCurrentPosition().then((position) => {
  
-    let mapOptions = {
-      center: latLng,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
+      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
  
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      let mapOptions = {
+        center: latLng,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
  
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+ 
+    }, (err) => {
+      console.log(err);
+    });
   }
 }
