@@ -70,7 +70,7 @@
       },
       "cordova-plugin-firebase-messaging": {},
       "phonegap-plugin-push": {
-        "SENDER_ID": "181858888867",
+        "SENDER_ID": "",
         "FCM_VERSION": "11.6.2"
       },
       "cordova-sqlite-storage": {}
